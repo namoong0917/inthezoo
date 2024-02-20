@@ -47,7 +47,6 @@ function App() {
   const [isLoading, setLoading] = useState(true);
   const init = async () => {
     // wait for firebase
-    // setTimeout(() => setLoading(false), 2000);
     setLoading(false); // firebase가 준비되면 loading을 false로
   };
   useEffect(() => {
