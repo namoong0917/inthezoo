@@ -1,4 +1,4 @@
-# InTheZoo, 트위터 클론 코딩
+# InTheZoo, X 클론 코딩
 
 ```Bash
 $ npm create vite@lastest
