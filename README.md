@@ -1,4 +1,19 @@
-# React + TypeScript + Vite
+# InTheZoo, 트위터 클론 코딩
+
+```Bash
+$ npm create vite@lastest
+  create-vite@5.2.0
+  Project name: inthezoo
+  Select a framework: React
+  Select a variant: TypeScript + SWC
+
+$ npm i react-router0dom@6.14.2
+$ npm i styled-reset
+$ npm i styled-components@6.07
+$ npm i @types/styled-components -D
+```
+
+## React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -17,12 +32,12 @@ If you are developing a production application, we recommend updating the config
 export default {
   // other rules...
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json", "./tsconfig.node.json"],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
