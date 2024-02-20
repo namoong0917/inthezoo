@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { styled } from "styled-components";
 import Logo from "../assets/img/logo.png";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
@@ -66,6 +69,7 @@ const Error = styled.span`
 `;
 
 export default function CreateAccount() {
+  const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -83,14 +87,27 @@ export default function CreateAccount() {
       setPassword(value);
     }
   };
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (isLoading || name === "" || email == "" || password === "") return;
     try {
+      setLoading(true);
       // create an account
       // set the name of the user.
       // redirect to the home page
+      const credentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log(credentials.user);
+      await updateProfile(credentials.user, {
+        displayName: name,
+      });
+      navigate("/");
     } catch (e) {
       // setError
+      // credentials 성공하지 못했을경우 일로 / 해당 이메일로 이미 계정이 있거나 비밀번호가 유효하지 않은 경우
     } finally {
       setLoading(false);
     }
