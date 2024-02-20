@@ -59,7 +59,7 @@ export default function CreateAccount() {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { name, value },
-    } = 0;
+    } = e;
     if (name === "name") {
       setName(value);
     } else if (name === "email") {
@@ -110,7 +110,7 @@ export default function CreateAccount() {
           <Input
             onChange={onChange}
             value={password}
-            name="password "
+            name="password"
             placeholder="Password"
             type="password"
             required
