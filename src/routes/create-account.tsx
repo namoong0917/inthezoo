@@ -3,31 +3,46 @@ import { styled } from "styled-components";
 import Logo from "../assets/img/logo.png";
 
 const Wrapper = styled.div`
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
   padding: 20px;
+
+  @media (max-width: 1016px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 const LeftImgWrap = styled.h1`
   width: 50%;
+  @media (max-width: 1016px) {
+    width: 40%;
+    margin-bottom: 80px;
+  }
 `;
 const LogoImg = styled.img`
   width: 100%;
 `;
-const LightWrap = styled.div``;
+const LightWrap = styled.div`
+  width: 30%;
+  @media (max-width: 1016px) {
+    width: 80%;
+    margin-bottom: 100px;
+  }
+`;
 
 const Form = styled.form`
-  margin-top: 50px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 100%;
 `;
 const Title = styled.h2`
-  font-size: 40px;
+  font-size: 1.6rem;
   color: #864622;
+  text-align: center;
 `;
 const Input = styled.input`
   margin: 5px 0;
@@ -89,7 +104,7 @@ export default function CreateAccount() {
         <LogoImg src={Logo} alt="in the zoo" />
       </LeftImgWrap>
       <LightWrap>
-        <Title>Let’s enter ‘in the zoo’</Title>
+        <Title>Let’s Join ‘in the zoo’</Title>
         <Form onSubmit={onSubmit}>
           <Input
             onChange={onChange}

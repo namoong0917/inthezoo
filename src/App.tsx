@@ -39,6 +39,8 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
+    font-size: 1.6rem;
+    font-weight: 400;
     background-color: #F1EDE4;
     color:white;
     font-family: Noto Sans, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
