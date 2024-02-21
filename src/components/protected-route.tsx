@@ -11,7 +11,7 @@ export default function ProtectedRoute({
   // Firebase에 유저 정보 요청, 유저가 로그인 되어있으면 Firebase가 유저 정보를 준다.
   // 그렇지 않다면 null
   const user = auth.currentUser;
-  if (!user) {
+  if (user === null) {
     // user가 ull인지 아닌지 확인, null이면 로그인 페이지로 보냄
     return <Navigate to="/login" />;
   }
