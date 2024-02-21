@@ -44,6 +44,7 @@ const GlobalStyles = createGlobalStyle`
   *, :before, :after { box-sizing: border-box; }
   html { font-size: 62.5%; }
   img { max-width: 100%; }
+  button{cursor: pointer;}
   body, button, select, textarea, table {
     font-size: 1.6rem;
     font-weight: 400;

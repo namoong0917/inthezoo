@@ -19,7 +19,7 @@ export const LeftImgWrap = styled.h1`
     margin-bottom: 30px;
   }
 `;
-export const LogoImg = styled.img``;
+export const Logo = styled.img``;
 export const LightWrap = styled.div`
   width: 30%;
   @media (max-width: 1016px) {
@@ -64,7 +64,7 @@ export const Error = styled.span`
 `;
 
 export const Switcher = styled.span`
-  margin-top: 20px;
+  margin: 20px 0;
   display: block;
   text-align: center;
   a {

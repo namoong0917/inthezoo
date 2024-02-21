@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Logo from "../assets/img/logo.png";
 import { auth } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
@@ -10,11 +9,12 @@ import {
   Input,
   LeftImgWrap,
   LightWrap,
-  LogoImg,
+  Logo,
   Switcher,
   Title,
   Wrapper,
 } from "../components/auth-components";
+import GithubButton from "../components/githup-btn";
 
 export default function CreateAccount() {
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ export default function CreateAccount() {
   return (
     <Wrapper>
       <LeftImgWrap>
-        <LogoImg src={Logo} alt="in the zoo" />
+        <Logo src="/img/logo.png" />
       </LeftImgWrap>
       <LightWrap>
         <Title>Login to ‘in the zoo’</Title>
@@ -80,6 +80,7 @@ export default function CreateAccount() {
           Don't have an account?{" "}
           <Link to="/create-account">Create one &rarr;</Link>
         </Switcher>
+        <GithubButton />
       </LightWrap>
     </Wrapper>
   );
