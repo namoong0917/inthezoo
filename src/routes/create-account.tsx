@@ -20,8 +20,8 @@ const Wrapper = styled.div`
 const LeftImgWrap = styled.h1`
   width: 50%;
   @media (max-width: 1016px) {
-    width: 40%;
-    margin-bottom: 80px;
+    width: 50%;
+    margin-bottom: 30px;
   }
 `;
 const LogoImg = styled.img`
@@ -30,7 +30,7 @@ const LogoImg = styled.img`
 const LightWrap = styled.div`
   width: 30%;
   @media (max-width: 1016px) {
-    width: 80%;
+    width: 90%;
     margin-bottom: 100px;
   }
 `;
