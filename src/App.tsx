@@ -41,15 +41,14 @@ const router = createBrowserRouter([
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    font-size: 1.6rem;
-    font-weight: 400;
-    background-color: #F1EDE4;
-    color: #864622;
-    font-family: Noto Sans, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  *, :before, :after { box-sizing: border-box; }
+  img { max-width: 100%; }
+  body, button, select, textarea, table {
+      font-size: 1.6rem;
+      font-weight: 400;
+      background-color: #F1EDE4;
+      color: #864622;
+      font-family: Noto Sans, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 `;
 
