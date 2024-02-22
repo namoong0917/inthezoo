@@ -22,20 +22,23 @@ const MenuUl = styled.ul`
 `;
 
 const MenuList = styled.li`
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
   height: 50px;
   width: 50px;
-  border-radius: 50%;
 
+  a {
+    cursor: pointer;
+  }
   svg {
     width: 30px;
     stroke: #864622;
   }
   &.log-out {
     svg {
+      cursor: pointer;
       stroke: #d93e22;
     }
   }
