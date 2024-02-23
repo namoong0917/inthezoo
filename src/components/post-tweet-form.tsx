@@ -104,22 +104,19 @@ export default function PostTweetForm() {
     try {
       setLoading(true);
       // 데이터 문서 안에 보여질 필드들
-      const doc = await addDoc(collection(db, "InTheZoo"), {
+      const doc = await addDoc(collection(db, "tweets"), {
         tweet,
         createdAt: Date.now(),
-        Photo: user.photoURL,
+        // Photo: user.photoURL,
         username: user.displayName || "Anonymous",
         userId: user.uid,
       });
       // 만약 파일 첨부가 되었다면
       if (file) {
-        // 저장 경로 지정
-        const locationRef = ref(
-          storage,
-          `InTheZoo/${user.uid}-${user.displayName}/${doc.id}`
-        );
+        // 저장 경로 지정 (Storage)
+        const locationRef = ref(storage, `tweets/${user.uid}/${doc.id}`);
         const result = await uploadBytes(locationRef, file);
-        const url = getDownloadURL(result.ref);
+        const url = await getDownloadURL(result.ref);
         await updateDoc(doc, {
           photo: url,
         });

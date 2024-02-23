@@ -10,6 +10,9 @@ const Wrap = styled.div`
   width: 100%;
   height: 100%;
   max-width: 860px;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const MenuWrap = styled.nav``;
