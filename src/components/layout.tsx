@@ -29,9 +29,6 @@ const MenuList = styled.li`
   height: 50px;
   width: 50px;
 
-  a {
-    cursor: pointer;
-  }
   svg {
     width: 30px;
     stroke: #864622;
