@@ -7,9 +7,10 @@ import { deleteObject, ref } from "firebase/storage";
 const Wrap = styled.li`
   display: grid;
   grid-template-columns: 3fr 1fr;
-  padding: 20px;
+  padding: 30px 20px;
+  background: #f3f0ea;
   & + & {
-    border-top: 1px solid;
+    border-top: 1px solid #864622;
   }
 `;
 
@@ -18,22 +19,29 @@ const Column = styled.div`
 `;
 
 const Username = styled.strong`
+  border: 1.2px solid #864622;
+  padding: 0 15px;
+  line-height: 38px;
+  border-radius: 20px;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 1.8rem;
+  display: inline-block;
+  margin-bottom: 20px;
 `;
 
 const Payload = styled.p`
-  margin: 10px 0;
+  color: #000;
+  margin: 20px 0;
   font-size: 1.8rem;
 `;
 
 const Photo = styled.img`
-  width: 100px;
-  height: 100px;
+  /* width: 100%; */
+  max-height: 500px;
 `;
 
 const DeleteButton = styled.button`
-  background: tomato;
+  background: #d62a0c;
   color: #fff;
   font-weight: 700;
   text-transform: uppercase;
@@ -66,12 +74,12 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
     <Wrap>
       <Column>
         <Username>{username}</Username>
+        <Column>{photo ? <Photo src={photo} /> : null}</Column>
         <Payload>{tweet}</Payload>
         {user?.uid === userId ? (
           <DeleteButton onClick={onDelete}>delete</DeleteButton>
         ) : null}
       </Column>
-      <Column>{photo ? <Photo src={photo} /> : null}</Column>
     </Wrap>
   );
 }

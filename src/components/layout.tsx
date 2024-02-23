@@ -4,9 +4,8 @@ import { auth } from "../firebase";
 
 const Wrap = styled.div`
   display: grid;
-  gap: 50px;
   grid-template-columns: 1fr 4fr;
-  padding: 20px;
+  padding: 0 20px;
   width: 100%;
   height: 100%;
   max-width: 860px;
@@ -15,13 +14,15 @@ const Wrap = styled.div`
   }
 `;
 
-const MenuWrap = styled.nav``;
+const MenuWrap = styled.nav`
+  height: 100vh;
+`;
 
 const MenuUl = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  margin-top: 20px;
 `;
 
 const MenuList = styled.li`
@@ -29,13 +30,15 @@ const MenuList = styled.li`
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
 
   svg {
-    width: 30px;
+    width: 35px;
     stroke: #864622;
   }
+  &:nth-child(2n) {
+    margin: 20px 0 20px;
+  }
+
   &.log-out {
     svg {
       cursor: pointer;

@@ -4,18 +4,34 @@ import styled from "styled-components";
 import { auth, db, storage } from "../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
+const Wrap = styled.div`
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: #f1ede4;
+`;
+
+const TopHeader = styled.h2`
+  padding: 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 3rem;
+  border-bottom: 1px solid #c3c3c3;
+`;
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  width: 100%;
+  border-bottom: 1px solid #864622;
+  background: none;
 `;
 
 const TextArea = styled.textarea`
-  padding: 20px;
+  padding: 10px 20px;
   border: none;
-  border-bottom: 1.5px solid #c3c3c3;
-  border-radius: 20px 20px 0 0;
-  height: 70px;
+  /* border-bottom: 1px solid #c3c3c3; */
+  height: 40px;
   color: #333;
   resize: none;
   transition: 0.5s;
@@ -27,9 +43,15 @@ const TextArea = styled.textarea`
   &:focus {
     background: #fffaf5;
     outline: none;
-    border-bottom: 1.5px solid #864622;
-    height: 150px;
+    height: 20vh;
   }
+`;
+
+const BtnWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
 `;
 
 const AttachFileButton = styled.label`
@@ -62,7 +84,7 @@ const SubmitBtn = styled.input`
   color: #fff;
   font-weight: 700;
   border: none;
-  padding: 10px 0;
+  padding: 8px 0;
   border-radius: 20px;
   background: none;
   color: #864622;
@@ -76,12 +98,6 @@ const SubmitBtn = styled.input`
     transition: all.2s;
     opacity: 0.9;
   }
-`;
-
-const BtnWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 `;
 
 export default function PostTweetForm() {
@@ -130,59 +146,62 @@ export default function PostTweetForm() {
     }
   };
   return (
-    <Form onSubmit={onSubmit}>
-      <TextArea
-        required
-        rows={5}
-        maxLength={500}
-        onChange={onChange}
-        value={tweet}
-        placeholder="나의 사랑스러운 반려동물을 자랑해 보세요!"
-      />
-      <BtnWrap>
-        <AttachFileButton htmlFor="file">
-          {file ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m4.5 12.75 6 6 9-13.5"
-              />
-            </svg>
-          ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6 imgBtn"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-              />
-            </svg>
-          )}
-        </AttachFileButton>
-        <AttachFileInput
-          onChange={onFileChange}
-          type="file"
-          id="file"
-          accept="image/*"
+    <Wrap>
+      <TopHeader>home</TopHeader>
+      <Form onSubmit={onSubmit}>
+        <TextArea
+          required
+          rows={5}
+          maxLength={500}
+          onChange={onChange}
+          value={tweet}
+          placeholder="나의 사랑스러운 반려동물을 자랑해 보세요!"
         />
-        {/* label의 htmlFor 값, input의 id 값
+        <BtnWrap>
+          <AttachFileButton htmlFor="file">
+            {file ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m4.5 12.75 6 6 9-13.5"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6 imgBtn"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+                />
+              </svg>
+            )}
+          </AttachFileButton>
+          <AttachFileInput
+            onChange={onFileChange}
+            type="file"
+            id="file"
+            accept="image/*"
+          />
+          {/* label의 htmlFor 값, input의 id 값
 			둘이 같으면 label을 눌렀을 때 file 버튼을 클릭하는 것과 같게 동작한다. */}
-        <SubmitBtn type="submit" value={isLoading ? "✔" : "posting"} />
-      </BtnWrap>
-    </Form>
+          <SubmitBtn type="submit" value={isLoading ? "✔" : "posting"} />
+        </BtnWrap>
+      </Form>
+    </Wrap>
   );
 }
