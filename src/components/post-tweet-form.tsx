@@ -1,5 +1,7 @@
+import { addDoc, collection } from "firebase/firestore";
 import { useState } from "react";
 import styled from "styled-components";
+import { auth, db } from "../firebase";
 
 const Form = styled.form`
   display: flex;
@@ -56,7 +58,6 @@ const AttachFileInput = styled.input`
 const SubmitBtn = styled.input`
   text-transform: uppercase;
   width: 100px;
-  /* background: #864622; */
   color: #fff;
   font-weight: 700;
   border: none;
@@ -95,8 +96,27 @@ export default function PostTweetForm() {
       setFile(files[0]);
     }
   };
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const user = auth.currentUser;
+    if (!user || isLoading || tweet === "" || tweet.length > 500) return;
+
+    try {
+      setLoading(true);
+      await addDoc(collection(db, "tweets"), {
+        tweet,
+        createdAt: Date.now(),
+        username: user.displayName || "Anonymous",
+        userId: user.uid,
+      });
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
-    <Form>
+    <Form onSubmit={onSubmit}>
       <TextArea
         rows={5}
         maxLength={500}
@@ -133,7 +153,7 @@ export default function PostTweetForm() {
         />
         {/* label의 htmlFor 값, input의 id 값
 			둘이 같으면 label을 눌렀을 때 file 버튼을 클릭하는 것과 같게 동작한다. */}
-        <SubmitBtn type="submit" value={isLoading ? "posting..." : "posting"} />
+        <SubmitBtn type="submit" value={isLoading ? "✔" : "posting"} />
       </BtnWrap>
     </Form>
   );
