@@ -1,7 +1,8 @@
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 import styled from "styled-components";
-import { auth, db } from "../firebase";
+import { auth, db, storage } from "../firebase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const Form = styled.form`
   display: flex;
@@ -27,7 +28,7 @@ const TextArea = styled.textarea`
     background: #fffaf5;
     outline: none;
     border-bottom: 1.5px solid #864622;
-    height: 200px;
+    height: 150px;
   }
 `;
 
@@ -100,15 +101,31 @@ export default function PostTweetForm() {
     e.preventDefault();
     const user = auth.currentUser;
     if (!user || isLoading || tweet === "" || tweet.length > 500) return;
-
     try {
       setLoading(true);
-      await addDoc(collection(db, "tweets"), {
+      // 데이터 문서 안에 보여질 필드들
+      const doc = await addDoc(collection(db, "InTheZoo"), {
         tweet,
         createdAt: Date.now(),
+        Photo: user.photoURL,
         username: user.displayName || "Anonymous",
         userId: user.uid,
       });
+      // 만약 파일 첨부가 되었다면
+      if (file) {
+        // 저장 경로 지정
+        const locationRef = ref(
+          storage,
+          `InTheZoo/${user.uid}-${user.displayName}/${doc.id}`
+        );
+        const result = await uploadBytes(locationRef, file);
+        const url = getDownloadURL(result.ref);
+        await updateDoc(doc, {
+          photo: url,
+        });
+      }
+      setTweet("");
+      setFile(null);
     } catch (e) {
       console.log(e);
     } finally {
@@ -118,6 +135,7 @@ export default function PostTweetForm() {
   return (
     <Form onSubmit={onSubmit}>
       <TextArea
+        required
         rows={5}
         maxLength={500}
         onChange={onChange}
@@ -127,7 +145,20 @@ export default function PostTweetForm() {
       <BtnWrap>
         <AttachFileButton htmlFor="file">
           {file ? (
-            "Photo added ✅"
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m4.5 12.75 6 6 9-13.5"
+              />
+            </svg>
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
