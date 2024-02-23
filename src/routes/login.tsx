@@ -74,7 +74,7 @@ export default function CreateAccount() {
             required
           />
           {error !== "" ? <Error>{error}</Error> : null}
-          <Input type="submit" value={isLoading ? "Loading..." : "Login"} />
+          <Input type="submit" value={isLoading ? "loading..." : "login"} />
         </Form>
         <Switcher>
           Don't have an account?{" "}

@@ -51,6 +51,8 @@ export const Input = styled.input`
   &[type="submit"] {
     background: #cf8e56;
     cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 700;
     &:hover {
       opacity: 0.8;
     }

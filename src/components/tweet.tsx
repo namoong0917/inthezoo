@@ -12,7 +12,6 @@ const Wrap = styled.li`
 
 const Column = styled.div`
   width: 100%;
-  border: 1px solid red;
 `;
 
 const Username = styled.strong`
