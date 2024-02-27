@@ -1,5 +1,7 @@
 # InTheZoo, X 클론 코딩
 
+## Installation
+
 ```Bash
 $ npm create vite@lastest
   create-vite@5.2.0

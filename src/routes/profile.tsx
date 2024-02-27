@@ -1,10 +1,21 @@
 import styled from "styled-components";
-import { auth, storage } from "../firebase";
-import { useState } from "react";
+import { auth, db, storage } from "../firebase";
+import { useEffect, useState } from "react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
+import {
+  collection,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
+import { ITweet } from "../components/timeline";
+import Tweet from "../components/tweet";
 
 const Wrap = styled.div`
+  margin-top: 20px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -39,9 +50,19 @@ const Name = styled.span`
   font-size: 2.2rem;
 `;
 
+const Tweets = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
+`;
+
 export default function Profile() {
+  // 유저 이미지
   const user = auth.currentUser;
   const [avatar, setAvatar] = useState(user?.photoURL);
+  // tweets 들 state로 만들기
+  const [tweets, setTweets] = useState<ITweet[]>([]);
   const onAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     if (!user) return;
@@ -58,6 +79,33 @@ export default function Profile() {
       });
     }
   };
+
+  const fetchTweets = async () => {
+    const tweetQuery = query(
+      collection(db, "tweets"),
+      where("userId", "==", user?.uid),
+      orderBy("createdAt", "desc"),
+      limit(25)
+    );
+    // document 가져오기
+    const snapshot = await getDocs(tweetQuery);
+    const tweets = snapshot.docs.map((doc) => {
+      const { tweet, createdAt, userId, username, photo } = doc.data();
+      return {
+        tweet,
+        createdAt,
+        userId,
+        username,
+        photo,
+        id: doc.id,
+      };
+    });
+    setTweets(tweets);
+  };
+  useEffect(() => {
+    fetchTweets();
+  }, []);
+
   return (
     <Wrap>
       <AvatarUpload htmlFor="avatar">
@@ -87,6 +135,12 @@ export default function Profile() {
         accept="image/*"
       />
       <Name>{user?.displayName ?? "Anonymous"}</Name>
+      {/* tweets 컨테이너 */}
+      <Tweets>
+        {tweets.map((tweet) => (
+          <Tweet key={tweet.id} {...tweet} />
+        ))}
+      </Tweets>
     </Wrap>
   );
 }

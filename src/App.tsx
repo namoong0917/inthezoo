@@ -54,7 +54,7 @@ const GlobalStyles = createGlobalStyle`
   }
   button{cursor: pointer; border:none;}
   a{text-decoration:none;}
-
+  li{list-style:none}
 
 `;
 
