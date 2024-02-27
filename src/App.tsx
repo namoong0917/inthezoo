@@ -52,7 +52,7 @@ const GlobalStyles = createGlobalStyle`
     color: #864622;
     font-family: Noto Sans, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
-  button{cursor: pointer;}
+  button{cursor: pointer; border:none;}
   a{text-decoration:none;}
 
 

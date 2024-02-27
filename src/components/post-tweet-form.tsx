@@ -5,6 +5,7 @@ import { auth, db, storage } from "../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const Wrap = styled.div`
+  z-index: 9999;
   position: sticky;
   top: 0;
   width: 100%;
