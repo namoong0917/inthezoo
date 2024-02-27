@@ -10,9 +10,10 @@ const Wrap = styled.div`
   top: 0;
   width: 100%;
   background: #f1ede4;
+  border-bottom: 1px solid #864622;
 `;
 
-const TopHeader = styled.h2`
+const Title = styled.h2`
   padding: 20px;
   text-transform: uppercase;
   font-weight: 700;
@@ -24,14 +25,12 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 100%;
-  border-bottom: 1px solid #864622;
   background: none;
 `;
 
 const TextArea = styled.textarea`
   padding: 10px 20px;
   border: none;
-  /* border-bottom: 1px solid #c3c3c3; */
   height: 40px;
   color: #333;
   resize: none;
@@ -148,7 +147,7 @@ export default function PostTweetForm() {
   };
   return (
     <Wrap>
-      <TopHeader>home</TopHeader>
+      <Title>home</Title>
       <Form onSubmit={onSubmit}>
         <TextArea
           required

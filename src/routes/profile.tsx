@@ -14,47 +14,103 @@ import {
 import { ITweet } from "../components/timeline";
 import Tweet from "../components/tweet";
 
-const Wrap = styled.div`
-  margin-top: 20px;
+const Wrap = styled.main`
+  border-left: 1px solid #864622;
+  border-right: 1px solid #864622;
+  overflow-y: scroll;
+`;
+
+const TitleWrap = styled.div`
+  border-bottom: 1px solid #864622;
+  position: sticky;
+  top: 0;
+  background: #f1ede4;
+  z-index: 9999;
+`;
+
+const Title = styled.h2`
+  padding: 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 3rem;
+  border-bottom: 1px solid #c3c3c3;
+`;
+
+const EditWrap = styled.div`
+  padding: 10px 20px;
   display: flex;
+  /* flex-direction: column; */
   align-items: center;
-  flex-direction: column;
+  justify-content: space-between;
   gap: 20px;
 `;
 
 const AvatarUpload = styled.label`
-  width: 80px;
-  overflow: hidden;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   background: #864622;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 
-  svg {
-    width: 50px;
+  &:hover {
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 50%;
+    }
   }
 `;
 
-const AvatarImg = styled.img`
-  width: 100%;
-`;
+const AvatarImg = styled.img``;
 
 const AvatarInput = styled.input`
   display: none;
 `;
 
+const NameInput = styled.input`
+  text-align: center;
+  width: 100%;
+  max-width: 200px;
+  padding: 0 8px;
+  font-size: 1.8rem;
+  outline: 2px solid #eee;
+  border: none;
+  border-radius: 8px;
+  line-height: 30px;
+  background: #fff;
+  transition: outline-color 0.4s;
+  &:focus {
+    outline: 2px solid #864622;
+    transition: outline-color 0.4s;
+  }
+`;
+const EditNameBtn = styled.button`
+  padding: 5px 12px;
+  font-weight: 700;
+  border-radius: 20px;
+  background: #864622;
+  color: #fff;
+`;
+
 const Name = styled.span`
   font-size: 2.2rem;
+  font-weight: 700;
+  color: #333;
 `;
 
 const Tweets = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: 10px;
 `;
 
 export default function Profile() {
@@ -63,6 +119,10 @@ export default function Profile() {
   const [avatar, setAvatar] = useState(user?.photoURL);
   // tweets 들 state로 만들기
   const [tweets, setTweets] = useState<ITweet[]>([]);
+  // 이름 수정
+  const [name, setName] = useState(user?.displayName ?? "Anonymous");
+  const [editMode, setEditMode] = useState(false);
+
   const onAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     if (!user) return;
@@ -79,6 +139,23 @@ export default function Profile() {
       });
     }
   };
+
+  const onChangeNameClick = async () => {
+    if (!user) return;
+    setEditMode((prev) => !prev);
+    if (!editMode) return;
+    try {
+      await updateProfile(user, {
+        displayName: name,
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setEditMode(false);
+    }
+  };
+  const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setName(event.target.value);
 
   const fetchTweets = async () => {
     const tweetQuery = query(
@@ -108,33 +185,51 @@ export default function Profile() {
 
   return (
     <Wrap>
-      <AvatarUpload htmlFor="avatar">
-        {avatar ? (
-          <AvatarImg src={avatar} />
-        ) : (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+      <TitleWrap>
+        <Title>Profile</Title>
+        <EditWrap>
+          <AvatarUpload htmlFor="avatar">
+            {avatar ? (
+              <AvatarImg src={avatar} />
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                />
+              </svg>
+            )}
+          </AvatarUpload>
+          <AvatarInput
+            onChange={onAvatarChange}
+            id="avatar"
+            type="file"
+            accept="image/*"
+          />
+          {editMode ? (
+            <NameInput
+              maxLength={10}
+              onChange={onNameChange}
+              type="text"
+              value={name}
             />
-          </svg>
-        )}
-      </AvatarUpload>
-      <AvatarInput
-        onChange={onAvatarChange}
-        id="avatar"
-        type="file"
-        accept="image/*"
-      />
-      <Name>{user?.displayName ?? "Anonymous"}</Name>
+          ) : (
+            <Name>{name ?? "Anonymous"}</Name>
+          )}
+          <EditNameBtn onClick={onChangeNameClick}>
+            {editMode ? "저장" : "편집"}
+          </EditNameBtn>
+        </EditWrap>
+      </TitleWrap>
+
       {/* tweets 컨테이너 */}
       <Tweets>
         {tweets.map((tweet) => (
