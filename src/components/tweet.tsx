@@ -92,7 +92,7 @@ const DeleteButton = styled.button`
 const Username = styled.strong`
   font-size: 1.5rem;
   color: #fff;
-  background: #5b5b5b;
+  background: #333;
   padding: 0 15px;
   line-height: 34px;
   border-radius: 20px;
@@ -104,6 +104,7 @@ const UserId = styled.p`
   display: inline-block;
   margin-left: 10px;
   font-weight: 700;
+  color: #5b5b5b;
 `;
 
 const Payload = styled.p`
