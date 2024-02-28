@@ -70,10 +70,10 @@ export default function CreateAccount() {
   return (
     <Wrapper>
       <LeftImgWrap>
-        <Logo src="/img/logo.png" />
+        <Logo src="/img/logo.svg" />
       </LeftImgWrap>
       <LightWrap>
-        <Title>Let’s Join ‘in the zoo’</Title>
+        <Title>‘in the zoo’와 함께 하기</Title>
         <Form onSubmit={onSubmit}>
           <Input
             onChange={onChange}
@@ -106,7 +106,8 @@ export default function CreateAccount() {
           />
         </Form>
         <Switcher>
-          Already have an account? <Link to="/login">Login &rarr;</Link>
+          이미 계정이 있으신가요?
+          <Link to="/login"> 로그인 하러 가기 &rarr;</Link>
         </Switcher>
         <GithubButton />
       </LightWrap>

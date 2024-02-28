@@ -55,7 +55,7 @@ export default function CreateAccount() {
         <Logo src="/img/logo.svg" />
       </LeftImgWrap>
       <LightWrap>
-        <Title>Login to ‘in the zoo’</Title>
+        <Title>‘in the zoo’에 로그인</Title>
         <Form onSubmit={onSubmit}>
           <Input
             onChange={onChange}
@@ -77,8 +77,7 @@ export default function CreateAccount() {
           <Input type="submit" value={isLoading ? "loading..." : "login"} />
         </Form>
         <Switcher>
-          Don't have an account?{" "}
-          <Link to="/create-account">Create one &rarr;</Link>
+          계정이 없으신가요? <Link to="/create-account">계정 생성 &rarr;</Link>
         </Switcher>
         <GithubButton />
       </LightWrap>
