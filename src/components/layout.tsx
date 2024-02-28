@@ -4,7 +4,7 @@ import { auth } from "../firebase";
 
 const Wrap = styled.div`
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 0.8fr 4fr;
   padding: 0 20px;
   width: 100%;
   height: 100%;
@@ -12,31 +12,47 @@ const Wrap = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
+  @media (max-width: 1016px) {
+    grid-template-columns: 0.5fr 4fr;
+  }
 `;
+
+const LogoWrap = styled.h1`
+  width: 80px;
+  min-width: 80px;
+`;
+const LogoImg = styled.img``;
 
 const MenuWrap = styled.nav`
   height: 100vh;
+  padding: 20px 10px;
+  border-left: 1px solid #864622;
 `;
 
 const MenuUl = styled.ul`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
 `;
 
 const MenuList = styled.li`
   display: flex;
-  align-items: center;
   justify-content: center;
-  border-radius: 50%;
+
+  a {
+    display: flex;
+    align-items: center;
+  }
 
   svg {
-    width: 35px;
+    width: 30px;
     stroke: #864622;
   }
+  &:first-child {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #864622;
+  }
   &:nth-child(2n) {
-    margin: 20px 0 20px;
+    margin: 40px 0;
   }
 
   &.log-out {
@@ -62,6 +78,13 @@ export default function Layout() {
     <Wrap>
       <MenuWrap>
         <MenuUl>
+          <MenuList>
+            <LogoWrap>
+              <Link to="/">
+                <LogoImg src="/img/logo.svg" alt="In The zoo" />
+              </Link>
+            </LogoWrap>
+          </MenuList>
           <MenuList>
             <Link to="/">
               <svg

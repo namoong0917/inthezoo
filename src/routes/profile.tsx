@@ -33,7 +33,7 @@ const Title = styled.h2`
   text-transform: uppercase;
   font-weight: 700;
   font-size: 3rem;
-  border-bottom: 1px solid #c3c3c3;
+  border-bottom: 1px solid #864622;
 `;
 
 const EditWrap = styled.div`
