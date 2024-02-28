@@ -16,11 +16,12 @@ const Wrap = styled.li`
 const Column = styled.div`
   width: 100%;
 `;
+const PotoColumn = styled.div`
+  margin: 30px 0;
+`;
 
 const UtilWrap = styled.div`
   position: relative;
-  display: flex;
-  justify-content: space-between;
 `;
 
 const UtilBtn = styled.button`
@@ -36,8 +37,8 @@ const UtilBtn = styled.button`
 `;
 const Util = styled.ul`
   position: absolute;
-  bottom: -10px;
-  right: 0;
+  top: 0px;
+  right: 18px;
   width: 100px;
   background: #fff6df;
   border: 1px solid #864622;
@@ -45,12 +46,28 @@ const Util = styled.ul`
 `;
 const UtilList = styled.li`
   text-align: center;
-  border-radius: 8px;
-  transition: 0.2s;
+
+  &:last-child:hover {
+    transition: 0.2s;
+  }
+`;
+
+const CopyButton = styled.button`
+  width: 100%;
+  height: 34px;
+  background: none;
 
   &:hover {
-    background: #d62a0c;
-    transition: 0.2s;
+    background: #333;
+    border-radius: 8px;
+    svg {
+      stroke: #fff;
+    }
+  }
+
+  svg {
+    width: 22px;
+    stroke: #864622;
   }
 `;
 
@@ -61,8 +78,11 @@ const DeleteButton = styled.button`
   background: none;
   font-weight: 700;
   font-size: 1.2rem;
+  transition: 0.2s;
 
   &:hover {
+    background: #d62a0c;
+    border-radius: 8px 8px;
     color: #fff;
     opacity: 0.9;
     transition: 0.2s;
@@ -70,19 +90,24 @@ const DeleteButton = styled.button`
 `;
 
 const Username = styled.strong`
-  border: 1.2px solid #864622;
+  font-size: 1.5rem;
+  color: #fff;
+  background: #5b5b5b;
   padding: 0 15px;
-  line-height: 38px;
+  line-height: 34px;
   border-radius: 20px;
   font-weight: 700;
-  font-size: 1.8rem;
   display: inline-block;
-  margin-bottom: 20px;
+`;
+
+const UserId = styled.p`
+  display: inline-block;
+  margin-left: 10px;
 `;
 
 const Payload = styled.p`
   color: #000;
-  margin: 20px 0;
+  margin: 20px 0 0;
   font-size: 1.8rem;
 `;
 
@@ -139,11 +164,15 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
     }
   };
 
+  // 유저아이디 5글자까지보이게
+  const uidLength = user?.uid?.substring(0, 5);
+
   return (
     <Wrap>
       <Column>
         <UtilWrap ref={utilRef}>
           <Username>{username}</Username>
+          <UserId>@_{uidLength}</UserId>
           <UtilBtn onClick={toggleUtil}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -162,6 +191,24 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
           </UtilBtn>
           <Util style={{ display: utilVisible ? "block" : "none" }}>
             <UtilList>
+              <CopyButton aria-label="링크 복사">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+                  />
+                </svg>
+              </CopyButton>
+            </UtilList>
+            <UtilList>
               {user?.uid === userId ? (
                 <DeleteButton aria-label="게시글 삭제" onClick={onDelete}>
                   삭제
@@ -170,7 +217,7 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
             </UtilList>
           </Util>
         </UtilWrap>
-        <Column>{photo ? <Photo src={photo} /> : null}</Column>
+        <PotoColumn>{photo ? <Photo src={photo} /> : null}</PotoColumn>
         <Payload>{tweet}</Payload>
       </Column>
     </Wrap>

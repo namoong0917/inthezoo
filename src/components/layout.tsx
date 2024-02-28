@@ -86,7 +86,7 @@ const MenuList = styled.li`
 export default function Layout() {
   const navigate = useNavigate();
   const onLogOut = async () => {
-    const ok = confirm("Are you sure you want to log out?");
+    const ok = confirm("정말 로그아웃 하시겠습니까?");
 
     if (ok) {
       auth.signOut();
