@@ -103,6 +103,7 @@ const Username = styled.strong`
 const UserId = styled.p`
   display: inline-block;
   margin-left: 10px;
+  font-weight: 700;
 `;
 
 const Payload = styled.p`
