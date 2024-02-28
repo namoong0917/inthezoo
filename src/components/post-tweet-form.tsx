@@ -199,7 +199,11 @@ export default function PostTweetForm() {
           />
           {/* label의 htmlFor 값, input의 id 값
 			둘이 같으면 label을 눌렀을 때 file 버튼을 클릭하는 것과 같게 동작한다. */}
-          <SubmitBtn type="submit" value={isLoading ? "✔" : "posting"} />
+          <SubmitBtn
+            aria-label="posting 업로드"
+            type="submit"
+            value={isLoading ? "✔" : "posting"}
+          />
         </BtnWrap>
       </Form>
     </Wrap>

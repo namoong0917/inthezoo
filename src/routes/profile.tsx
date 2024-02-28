@@ -225,7 +225,10 @@ export default function Profile() {
           ) : (
             <Name>{name ?? "Anonymous"}</Name>
           )}
-          <EditNameBtn onClick={onChangeNameClick}>
+          <EditNameBtn
+            aria-label="내 이름 편집하기"
+            onClick={onChangeNameClick}
+          >
             {editMode ? "저장" : "편집"}
           </EditNameBtn>
         </EditWrap>

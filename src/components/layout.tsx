@@ -46,6 +46,9 @@ const MenuList = styled.li`
   svg {
     width: 30px;
     stroke: #864622;
+    &:hover {
+      fill: #864622;
+    }
   }
   &:first-child {
     padding-bottom: 20px;
@@ -59,6 +62,9 @@ const MenuList = styled.li`
     svg {
       cursor: pointer;
       stroke: #d93e22;
+      &:hover {
+        fill: #ffa698;
+      }
     }
   }
 `;
@@ -81,14 +87,14 @@ export default function Layout() {
           <MenuList>
             <LogoWrap>
               <Link to="/">
-                <LogoImg src="/img/logo.svg" alt="In The zoo" />
+                <LogoImg src="/img/logo.svg" alt="In The zoo 로고" />
               </Link>
             </LogoWrap>
           </MenuList>
           <MenuList>
             <Link to="/">
               <svg
-                aria-label="Home"
+                aria-label="Home으로 이동"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -107,7 +113,7 @@ export default function Layout() {
           <MenuList>
             <Link to="/profile">
               <svg
-                aria-label="profile"
+                aria-label="profile로 이동"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"

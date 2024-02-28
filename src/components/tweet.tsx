@@ -163,7 +163,9 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
           <Util style={{ display: utilVisible ? "block" : "none" }}>
             <UtilList>
               {user?.uid === userId ? (
-                <DeleteButton onClick={onDelete}>삭제</DeleteButton>
+                <DeleteButton aria-label="게시글 삭제" onClick={onDelete}>
+                  삭제
+                </DeleteButton>
               ) : null}
             </UtilList>
           </Util>
