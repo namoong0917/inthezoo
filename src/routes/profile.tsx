@@ -102,11 +102,19 @@ const NameInput = styled.input`
   }
 `;
 const EditNameBtn = styled.button`
-  padding: 5px 12px;
+  width: 100px;
+  padding: 5px 0;
   font-weight: 700;
   border-radius: 20px;
-  background: #864622;
-  color: #fff;
+  color: #864622;
+  border: 1.5px solid #864622;
+  transition: all.2s;
+  &:hover {
+    color: #fff;
+    background: #864622;
+    border: 1.5px solid #864622;
+    transition: all.2s;
+  }
 `;
 
 const Name = styled.span`
