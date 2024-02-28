@@ -55,6 +55,7 @@ const AvatarUpload = styled.label`
   justify-content: center;
   align-items: center;
   position: relative;
+  overflow: hidden;
 
   &:hover {
     &::before {

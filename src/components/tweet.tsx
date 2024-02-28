@@ -133,7 +133,7 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
         await deleteObject(photoRef);
       }
     } catch (e) {
-      console.error(e);
+      console.log(e);
     } finally {
       setUtilVisible(false);
     }
