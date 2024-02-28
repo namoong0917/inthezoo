@@ -4,29 +4,35 @@ import { auth } from "../firebase";
 
 const Wrap = styled.div`
   display: grid;
-  grid-template-columns: 0.8fr 4fr;
+  grid-template-columns: 0.5fr 4fr 1fr;
   padding: 0 20px;
   width: 100%;
   height: 100%;
-  max-width: 860px;
+  max-width: 1240px;
   ::-webkit-scrollbar {
     display: none;
   }
   @media (max-width: 1016px) {
-    grid-template-columns: 0.5fr 4fr;
+    padding: 0;
+    grid-template-columns: 0.4fr 4fr 1fr;
   }
 `;
 
 const LogoWrap = styled.h1`
-  width: 80px;
-  min-width: 80px;
+  /* width: 80px; */
+  min-width: 50px;
 `;
-const LogoImg = styled.img``;
 
 const MenuWrap = styled.nav`
   height: 100vh;
   padding: 20px 10px;
   border-left: 1px solid #864622;
+  background: #f1ede4;
+
+  @media (max-width: 1016px) {
+    padding: 0;
+    grid-template-columns: 0.2fr 4fr 1fr;
+  }
 `;
 
 const MenuUl = styled.ul`
@@ -51,11 +57,19 @@ const MenuList = styled.li`
     }
   }
   &:first-child {
-    padding-bottom: 20px;
+    padding-bottom: 17px;
     border-bottom: 1px solid #864622;
+
+    @media (max-width: 1016px) {
+      padding: 20px 5px;
+      border-bottom: none;
+    }
   }
   &:nth-child(2n) {
     margin: 40px 0;
+    @media (max-width: 1016px) {
+      margin: 25px 0;
+    }
   }
 
   &.log-out {
@@ -87,7 +101,7 @@ export default function Layout() {
           <MenuList>
             <LogoWrap>
               <Link to="/">
-                <LogoImg src="/img/logo.svg" alt="In The zoo 로고" />
+                <img src="/img/logo.svg" alt="In The zoo 로고" />
               </Link>
             </LogoWrap>
           </MenuList>

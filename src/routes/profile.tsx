@@ -34,6 +34,10 @@ const Title = styled.h2`
   font-weight: 700;
   font-size: 3rem;
   border-bottom: 1px solid #864622;
+
+  @media (max-width: 1016px) {
+    font-size: 1.6rem;
+  }
 `;
 
 const EditWrap = styled.div`
@@ -43,6 +47,9 @@ const EditWrap = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  @media (max-width: 1016px) {
+    flex-direction: column;
+  }
 `;
 
 const AvatarUpload = styled.label`

@@ -19,6 +19,10 @@ const Title = styled.h2`
   font-weight: 700;
   font-size: 3rem;
   border-bottom: 1px solid #864622;
+
+  @media (max-width: 1016px) {
+    font-size: 1.6rem;
+  }
 `;
 
 const Form = styled.form`
@@ -39,6 +43,9 @@ const TextArea = styled.textarea`
     color: #888;
     font-size: 1.4rem;
     font-weight: 600;
+    @media (max-width: 1016px) {
+      font-size: 1.2rem;
+    }
   }
   &:focus {
     background: #fffaf5;
