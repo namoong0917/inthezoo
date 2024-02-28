@@ -52,7 +52,7 @@ export default function CreateAccount() {
   return (
     <Wrapper>
       <LeftImgWrap>
-        <Logo src="/img/logo.png" />
+        <Logo src="/img/logo.svg" />
       </LeftImgWrap>
       <LightWrap>
         <Title>Login to ‘in the zoo’</Title>
