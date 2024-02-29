@@ -1,4 +1,5 @@
 firebase.ts
+.firebase/
 
 # Logs
 logs
