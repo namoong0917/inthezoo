@@ -2,19 +2,17 @@ import { styled } from "styled-components";
 
 const Wrapper = styled.div`
   height: 100vh;
+  width: 100%;
+  background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const Text = styled.span`
-  font-size: 24px;
-`;
-
 export default function LoadingScreen() {
   return (
     <Wrapper>
-      <Text>Loading...</Text>
+      <img src="img/loading.gif" alt="로딩중..." />
     </Wrapper>
   );
 }
