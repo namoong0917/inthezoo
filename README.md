@@ -15,6 +15,26 @@ $ npm i styled-components@6.07
 $ npm i @types/styled-components -D
 
 $ npm i firebase@10.1.0
+
+```
+
+## Firebase Hosting, Firebase CLI, Firebase 초기화 작업
+
+```Bash
+$ npm install -g firebase-tools
+$ firebase login
+$ firebase init
+
+$ Hosting: configure files for Firebase Hosting
+$ Use an existing project
+$ [project이름]
+
+$ npm run build
+
+$ dist
+$ single-page app? Y
+$ File dist/index.html already exists. overwrite? Y
+
 ```
 
 ## React + TypeScript + Vite

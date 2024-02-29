@@ -100,12 +100,12 @@ const Username = styled.strong`
   display: inline-block;
 `;
 
-const UserId = styled.p`
-  display: inline-block;
-  margin-left: 10px;
-  font-weight: 700;
-  color: #5b5b5b;
-`;
+// const UserId = styled.p`
+//   display: inline-block;
+//   margin-left: 10px;
+//   font-weight: 700;
+//   color: #5b5b5b;
+// `;
 
 const Payload = styled.p`
   color: #000;
@@ -167,14 +167,14 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
   };
 
   // 유저아이디 5글자까지보이게
-  const uidLength = user?.uid?.substring(0, 5);
+  // const uidLength = user?.uid?.substring(0, 5);
 
   return (
     <Wrap>
       <Column>
         <UtilWrap ref={utilRef}>
           <Username>{username}</Username>
-          <UserId>@_{uidLength}</UserId>
+          {/* <UserId>@_{uidLength}</UserId> */}
           <UtilBtn onClick={toggleUtil}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
