@@ -22,8 +22,8 @@ const Wrap = styled.div`
 `;
 
 const LogoWrap = styled.h1`
-  /* width: 80px; */
   min-width: 50px;
+  margin-bottom: 20px;
 `;
 
 const MenuWrap = styled.nav`
@@ -46,9 +46,15 @@ const MenuList = styled.li`
   display: flex;
   justify-content: center;
 
-  a {
+  & > a {
     display: flex;
     align-items: center;
+    width: 100%;
+    justify-content: center;
+    padding: 20px 10px;
+  }
+  a:hover svg {
+    fill: #864622;
   }
 
   svg {
@@ -59,29 +65,23 @@ const MenuList = styled.li`
     }
   }
   &:first-child {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #864622;
-
     @media (max-width: 1016px) {
       padding: 20px 10px;
       border-bottom: none;
     }
   }
-  &:nth-child(2n) {
-    margin: 44px 0;
-    padding-top: 10px;
-    @media (max-width: 1016px) {
-      margin: 25px 0;
-    }
+
+  &:last-child svg {
+    stroke: #d93e22;
   }
 
   &.log-out {
-    svg {
-      cursor: pointer;
-      stroke: #d93e22;
-      &:hover {
-        fill: #ffa698;
-      }
+    stroke: #d93e22;
+    padding: 20px 10px;
+    cursor: pointer;
+
+    &:hover svg {
+      fill: #ffa698;
     }
   }
 `;
@@ -109,6 +109,7 @@ const TopContents = styled.div`
     font-size: 1.8rem;
     font-weight: 700;
     padding: 20px;
+    display: none;
 
     @media (max-width: 1016px) {
       display: none;
@@ -116,13 +117,14 @@ const TopContents = styled.div`
   }
 
   ul {
+    @media (max-width: 1016px) {
+      margin-top: 150px;
+    }
+
     li {
       display: flex;
       &:hover {
         background: #f4f2f0;
-      }
-      &:first-child {
-        margin-top: 45px;
       }
       &:hover a {
         color: #333;
