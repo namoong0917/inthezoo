@@ -4,17 +4,20 @@ import { auth } from "../firebase";
 
 const Wrap = styled.div`
   display: grid;
-  grid-template-columns: 0.5fr 4fr 1fr;
-  padding: 0 20px;
+  grid-template-columns: 0.4fr 4fr 0.4fr;
+  margin: 0 20px;
   width: 100%;
   height: 100%;
   max-width: 1240px;
+  border-left: 1px solid #864622;
+  border-right: 1px solid #864622;
   ::-webkit-scrollbar {
     display: none;
   }
   @media (max-width: 1016px) {
-    padding: 0;
-    grid-template-columns: 0.4fr 4fr 1fr;
+    border: none;
+    margin: 0;
+    grid-template-columns: 0.4fr 4fr 0.4fr;
   }
 `;
 
@@ -26,7 +29,6 @@ const LogoWrap = styled.h1`
 const MenuWrap = styled.nav`
   height: 100vh;
   padding: 20px 10px;
-  border-left: 1px solid #864622;
   background: #f1ede4;
 
   @media (max-width: 1016px) {
@@ -57,16 +59,17 @@ const MenuList = styled.li`
     }
   }
   &:first-child {
-    padding-bottom: 17px;
+    padding-bottom: 20px;
     border-bottom: 1px solid #864622;
 
     @media (max-width: 1016px) {
-      padding: 20px 5px;
+      padding: 20px 10px;
       border-bottom: none;
     }
   }
   &:nth-child(2n) {
-    margin: 40px 0;
+    margin: 44px 0;
+    padding-top: 10px;
     @media (max-width: 1016px) {
       margin: 25px 0;
     }
@@ -81,6 +84,82 @@ const MenuList = styled.li`
       }
     }
   }
+`;
+
+const RightSideBar = styled.div`
+  height: 100vh;
+  padding-bottom: 20px;
+  background: #f1ede4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const TopContents = styled.div`
+  @media (max-width: 1016px) {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    min-width: 40px;
+  }
+
+  h3 {
+    text-align: center;
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding: 20px;
+
+    @media (max-width: 1016px) {
+      display: none;
+    }
+  }
+
+  ul {
+    li {
+      display: flex;
+      &:hover {
+        background: #f4f2f0;
+      }
+      &:first-child {
+        margin-top: 45px;
+      }
+      &:hover a {
+        color: #333;
+      }
+      a {
+        font-weight: 700;
+        padding: 20px 10px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+
+        @media (max-width: 1016px) {
+          justify-content: center;
+          padding: 20px 10px;
+        }
+        img {
+          width: 30px;
+        }
+      }
+      p {
+        color: #333;
+        font-size: 1.4rem;
+        @media (max-width: 1016px) {
+          display: none;
+        }
+      }
+    }
+  }
+`;
+
+const Copyright = styled.span`
+  font-size: 1rem;
+  padding: 0 5px;
+  display: block;
+  text-align: center;
 `;
 
 export default function Layout() {
@@ -163,6 +242,26 @@ export default function Layout() {
         </MenuUl>
       </MenuWrap>
       <Outlet />
+      <RightSideBar>
+        <TopContents>
+          <h3>소개</h3>
+          <ul>
+            <li>
+              <Link target="_blank" to="https://github.com/namoong0917">
+                <img src="/img/github-logo.svg" alt="깃허브 링크" />
+                <p>깃허브</p>
+              </Link>
+            </li>
+            <li>
+              <Link target="_blank" to="https://south-dev.tistory.com/">
+                <img src="/img/tstory.svg" alt="깃허브 링크" />
+                <p>블로그</p>
+              </Link>
+            </li>
+          </ul>
+        </TopContents>
+        <Copyright>ⓒ 2024. namoong0917 all rights reserved.</Copyright>
+      </RightSideBar>
     </Wrap>
   );
 }
