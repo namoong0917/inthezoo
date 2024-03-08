@@ -1,4 +1,14 @@
-# InTheZoo, X 클론 코딩
+# InTheZoo, 동물 자랑 사이트
+
+![inthezoo loginpage](https://github.com/namoong0917/inthezoo/assets/103318401/27c66f6a-890b-47f5-9b60-1af4bc867d73)
+
+> View Site : https://inthezoo-f1fc8.web.app
+
+## 🛠 사용 스택
+
+![react](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![typescript](https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=fff)
+![firebase](https://img.shields.io/badge/firebase-fff?style=for-the-badge&logo=firebase&logoColor=FFCA28)
 
 ## Installation
 
@@ -36,6 +46,17 @@ $ single-page app? Y
 $ File dist/index.html already exists. overwrite? Y
 
 ```
+
+## 💡 기능 구현
+
+1. 로그인 페이지
+   ![inthezoo loginpage](https://github.com/namoong0917/inthezoo/assets/103318401/27c66f6a-890b-47f5-9b60-1af4bc867d73)
+
+2. HOME 화면, 게시글 업로드
+   ![inthezoo hosting](https://github.com/namoong0917/inthezoo/assets/103318401/075dfcb0-4400-4b90-8d79-57a743616cef)
+
+3. 게시물 삭제
+   ![inthezoo Delete post](https://github.com/namoong0917/inthezoo/assets/103318401/b027ddd1-6a51-44b2-b2e6-f49b05c67a70)
 
 ## React + TypeScript + Vite
 
